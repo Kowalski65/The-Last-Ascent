@@ -16,10 +16,15 @@ public class Player : MonoBehaviour
     public float groundRadius = 0.2f;
     public LayerMask groundLayer;
 
+    
+    private SpriteRenderer spriteRenderer;
+    public Sprite people1;  
+    public Sprite people2;   
+
     void Start()
     {
-        
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -35,6 +40,16 @@ public class Player : MonoBehaviour
 
         
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+        
+        if (moveInput > 0) 
+        {
+            spriteRenderer.sprite = people1;  
+        }
+        else if (moveInput < 0) 
+        {
+            spriteRenderer.sprite = people2;   
+        }
     }
 
     void HandleJump()
